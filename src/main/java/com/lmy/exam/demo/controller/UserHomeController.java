@@ -9,6 +9,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.lmy.exam.demo.valueObject.Article;
+
+import lombok.Getter;
+
 @Controller
 public class UserHomeController {
 		@RequestMapping("/user/home/getString")
@@ -62,23 +66,24 @@ public class UserHomeController {
 			
 			return list;
 		}
+		
 		@RequestMapping("/user/home/getArticle")
 		@ResponseBody
 		public Article getArticle() {
-			Article article = new Article();
+			Article article = new Article(1, "제목1", "내용1");
 			return article;
 		}
-		
+		@RequestMapping("/user/home/getArticles")
+		@ResponseBody
+		public List<Article> getArticles() {
+			Article article1 = new Article(1, "제목1", "내용1");
+			Article article2 = new Article(2, "제목2","내용2");
+			
+		 List<Article> list = new ArrayList<>();
+		 list.add(article1);
+		 list.add(article2);
+			return list;
+		}
 		
 }
-
-class Article {
-	public int id;
-	public String title;
-	
-	public Article() {
-		id = 1;
-		title = "제목1";
-	}
-	
-} 
+ 
